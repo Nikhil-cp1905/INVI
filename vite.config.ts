@@ -1,8 +1,30 @@
-// vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react' // or your specific plugin
+import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig({
-  plugins: [react()],
-  base: '/INVI/', // Replace 'INVI' with your exact repo name if different
-})
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, '.', '');
+  
+  return {
+    // This tells Vite that the app will be hosted at https://Nikhil-cp1905.github.io/INVI/
+    base: '/INVI/', 
+    
+    plugins: [react(), tailwindcss()],
+    
+    define: {
+      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+    },
+    
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '.'),
+      },
+    },
+    
+    server: {
+      // HMR is disabled in AI Studio via DISABLE_HMR env var.
+      hmr: process.env.DISABLE_HMR !== 'true',
+    },
+  };
+});
