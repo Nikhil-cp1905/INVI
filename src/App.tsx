@@ -15,10 +15,13 @@ import invitationImg from './img.jpeg';
 
 // --- Constants ---
 
+// --- Constants ---
+
 const EVENT_DATE = new Date('2026-05-31T10:30:00');
 const VENUE_NAME = "Vadayar Samooham Community Hall";
-const MAPS_URL = "https://maps.app.goo.gl/YourActualLinkHere"; // Update this with a real link!
 
+// This is the direct search link for the venue in Vaikom
+const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Vadayar+Samooham+Community+Hall+Vaikom+Kottayam";
 // --- Components ---
 
 const CountdownTimer = () => {
